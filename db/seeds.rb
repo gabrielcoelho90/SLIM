@@ -1,9 +1,21 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'http'
+
+activity = 'surf'
+api_url = "https://api.api-ninjas.com/v1/caloriesburned?activity=#{activity}"
+headers = { 'X-Api-Key' => ENV['API_KEY'] }
+
+response = HTTP.headers(headers).get(api_url)
+
+if response.status.success?
+  data = response.parse
+  activity_data = Sport.create!(
+    name: activity,
+    calories_met: data.first['calories_per_hour']
+  )
+  puts "Sucess Saved"
+else
+  render json: { error: response.status, message: response.to_s }, status: response.code
+  puts "Gone wrong"
+end
+
+puts "Db Seeded"
