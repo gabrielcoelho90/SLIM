@@ -1,6 +1,6 @@
 require 'http'
 
-activity = 'surf'
+activity = 'box'
 api_url = "https://api.api-ninjas.com/v1/caloriesburned?activity=#{activity}"
 headers = { 'X-Api-Key' => ENV['API_KEY'] }
 
