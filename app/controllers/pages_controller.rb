@@ -28,12 +28,12 @@ class PagesController < ApplicationController
     end
   end
 
-  # calorias por dia que preciso perder
+  # calories per day I need to lose
   def deficit(kilos, time)
     (kilos * 7700) / time
   end
 
-  # converter para dias
+  # convert to days
   def day_convert(metric, time)
     metric == "Months" ? time * 30 : time * 7
   end
