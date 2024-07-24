@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_08_200854) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_24_143615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_200854) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_sports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sports_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sports_id"], name: "index_user_sports_on_sports_id"
+    t.index ["user_id"], name: "index_user_sports_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -29,8 +38,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_200854) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.float "weight"
+    t.float "height"
+    t.datetime "birth"
+    t.string "gender"
+    t.string "name"
+    t.float "kilos_to_lose"
+    t.datetime "timeline"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weight_records", force: :cascade do |t|
+    t.datetime "date"
+    t.bigint "users_id", null: false
+    t.float "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_weight_records_on_users_id"
+  end
+
+  add_foreign_key "user_sports", "sports", column: "sports_id"
+  add_foreign_key "user_sports", "users"
+  add_foreign_key "weight_records", "users", column: "users_id"
 end
