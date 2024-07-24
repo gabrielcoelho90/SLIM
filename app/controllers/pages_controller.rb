@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     @user = current_user
-    render 'users/edit' if @user.weight.nil?
+    redirect_to edit_user_path(@user) if @user.name.nil?
   end
 
   def profile

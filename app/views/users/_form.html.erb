@@ -1,15 +1,48 @@
-<%= form_with model: @user do |form| %>
-  <%= form.label :age %>
-  <%= form.text_field :age %>
-  <%= form.label :weight %>
-  <%= form.text_field :weight %>
-  <%= form.label :height %>
-  <%= form.text_field :height %>
-  <%= form.label :kilos %>
-  <%= form.text_field :kilos_to_lose %>
+<div>
+  <%= form_with model: @user, url: user_path, method: "patch" do |form| %>
+  <div class="m-3">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="m-3">
+    <%= form.label :age %>
+    <%= form.text_field :age %>
+  </div>
+  <div class="m-3">
+    <%= form.label :weight %>
+    <%= form.text_field :weight %>
+  </div>
+  <div class="m-3">
+    <%= form.label :height %>
+    <%= form.text_field :height %>
+  </div>
+  <div class="m-3">
+    <%= form.label :kilos, 'I want to lose: ' %>
+    <%= form.text_field :kilos_to_lose, placeholder: "in kilos" %>
+  </div>
+  <div class="m-3">
+    <%= form.label :gender %><br>
+    <%= form.radio_button :gender, 'male'%>
+    <%= form.label :gender_male, 'Male' %>
+    <%= form.radio_button :gender, 'female' %>
+    <%= form.label :gender_female, 'Female' %>
+  </div>
+  <div class="mt-3">
+    <%= form.label :timeline, 'I want to achieve my goal in: ' %>
+    <%= form.text_field :timeline %><br>
+    <%= form.radio_button :timeline, 'days' %>
+    <%= form.label :timeline, 'Days' %>
+    <%= form.radio_button :timeline, 'weeks' %>
+    <%= form.label :timeline, 'Weeks' %>
+    <%= form.radio_button :timeline, 'months' %>
+    <%= form.label :timeline, 'Months' %>
+  </div>
 
-  <%= form.submit %>
-<% end %>
+  <div class="my-3 mx-2">
+    <%= form.submit %>
+  <% end %>
+  </div>
+</div>
 
 
 
