@@ -1,21 +1,14 @@
-require 'http'
+puts 'creating...'
 
-activity = 'box'
-api_url = "https://api.api-ninjas.com/v1/caloriesburned?activity=#{activity}"
-headers = { 'X-Api-Key' => ENV['API_KEY'] }
+User.create(
+  name:'gabriel',
+  weight: 90,
+  height: 1.85,
+  email: 'gbc@gmail.com',
+  age: 33,
+  gender: 'male',
+  password: '123456',
+  kilos_to_lose: 5,
+  timeline: 3)
 
-response = HTTP.headers(headers).get(api_url)
-
-if response.status.success?
-  data = response.parse
-  activity_data = Sport.create!(
-    name: activity,
-    calories_met: data.first['calories_per_hour']
-  )
-  puts "Sucess Saved"
-else
-  render json: { error: response.status, message: response.to_s }, status: response.code
-  puts "Gone wrong"
-end
-
-puts "Db Seeded"
+puts 'Done!'

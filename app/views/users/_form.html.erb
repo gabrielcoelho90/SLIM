@@ -1,0 +1,26 @@
+<%= form_with model: @user do |form| %>
+  <%= form.label :age %>
+  <%= form.text_field :age %>
+  <%= form.label :weight %>
+  <%= form.text_field :weight %>
+  <%= form.label :height %>
+  <%= form.text_field :height %>
+  <%= form.label :kilos %>
+  <%= form.text_field :kilos_to_lose %>
+
+  <%= form.submit %>
+<% end %>
+
+
+
+
+
+<%#
+ t.integer "age"
+    t.float "weight"
+    t.float "height"
+    t.datetime "birth"
+    t.string "gender"
+    t.string "name"
+    t.float "kilos_to_lose"
+    t.datetime "timeline" %>

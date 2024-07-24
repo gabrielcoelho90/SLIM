@@ -1,45 +1,6 @@
-<div class="p-5">
-  <div class="mb-4">
-    <h1>SLIM - Change your life!</h1>
-  </div>
-    <%= form_with url: "/info", method: :get do |form|%>
-      <div class="mb-3">
-        <%= form.label :idade, "Age: ", class: "form-label" %>
-        <%= form.text_field :idade, class: "ms-4" %>
-      </div>
-      <div class="mb-3">
-        <%= form.label :peso, "Weight: ", class: "form-label" %>
-        <%= form.text_field :peso %>
-      </div>
-      <div class="mb-3">
-        <%= form.label :altura, "Height  : ", class: "form-label" %>
-        <%= form.text_field :altura %>
-      </div>
-      <div class="mb-3">
-        <%= form.radio_button :gender, "male" %>
-        <%= form.label :gender, "Male", class: "form-label" %>
-      </div>
-      <div class="mb-3">
-        <%= form.radio_button :gender, "female" %>
-        <%= form.label :gender, "Female", class: "form-label" %>
-      </div>
-      <div class="mb-3">
-        <%= form.label :kilos, "How many quilos do you want to lose ?", class: "form-label" %>
-        <%= form.text_field :kilos %>
-      </div>
-      <div class="mb-3">
-        <div class="row">
-          <div class="col-3">
-            <%= form.label :time, "How long do you want to lose it ?", class: "form-label px-0" %>
-          </div>
-          <div class="col-2">
-            <%= form.text_field :time, class: "px-0"  %>
-          </div>
-          <div class="col-3">
-            <%= form.select :metric, ["Days", "Weeks", "Months"] %>
-          </div>
-        </div>
-      </div>
-      <%= form.submit "Calculate" %>
-    <% end %>
+<div class="m-5">
+  <h1>Welcome back, <%= @user.name %></h1>
+  <h2> Your BMI is : <%= @user.bmi %> %</h2>
+  <h2>Your baseline calories are: <%= @user.bmr %> calories</h2>
+  <h2> To accomplish your goal, you need to lose: <%= @calories_per_day %> calories per day</h2>
 </div>
