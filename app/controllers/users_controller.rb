@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
+  before_action :load_user
+
   def show
-    @user = current_user
   end
 
   def edit
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to root_path, notice: 'User was successfully updated.'
     else
@@ -15,9 +15,13 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+private
+
+  def load_user
+    @user = current_user
+  end
 
   def user_params
-    params.require(:user).permit(:name, :age, :weight, :height, :kilos_to_lose, :gender, :timeline)
+    params.require(:user).permit(:name, :age, :weight, :height, :kilos_to_lose, :gender)
   end
 end
