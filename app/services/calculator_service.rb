@@ -1,10 +1,13 @@
 class CalculatorService
   def initialize(attributes = {})
-    @weight = attributes[:weight]
-    @height = attributes[:height]
-    @age = attributes[:age]
-    @gender = attributes[:gender]
-    @timeline = attributes[:timeline]
+    @weight = 90 #attributes[:weight]
+    @height = 1.85 #attributes[:height]
+    @age = 33 #attributes[:age]
+    @kilos_to_lose = 3 #attributes[:kilos_to_lose]
+    @gender = 'female' #attributes[:gender]
+    @metric = 'Months' #attributes[:metric]
+    @timeline = 3 #attributes[:timeline]
+    @time_expectation = convert_to_days unless attributes[:metric] == 'Days'
   end
 
   def bmi
@@ -20,11 +23,10 @@ class CalculatorService
   end
 
   def daily_loss
-    timeline = convert_to_days(metric, @timeline) unless metric == "Days"
-    (kilos_to_lose * 7700) / timeline
+    (@kilos_to_lose * 7700) / @time_expectation
   end
 
-  def convert_to_days(metric, timeline)
-    metric == "Months" ? @timeline * 30 : @timeline * 7
+  def convert_to_days
+    @metric == "Months" ? @timeline * 30 : @timeline * 7
   end
 end
