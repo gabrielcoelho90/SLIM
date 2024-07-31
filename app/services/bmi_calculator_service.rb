@@ -5,12 +5,6 @@ class BmiCalculatorService < ApplicationService
   end
 
   def call
-    bmi
-  end
-
-  private
-
-  def bmi
     (@weight / (@height * @height)).round(2)
   end
 end

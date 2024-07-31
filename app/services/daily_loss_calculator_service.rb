@@ -7,14 +7,10 @@ class DailyLossCalculatorService < ApplicationService
   end
 
   def call
-    daily_loss
+    ((@kilos_to_lose * 7700) / @time_expectation).round(2)
   end
 
   private
-
-  def daily_loss
-    ((@kilos_to_lose * 7700) / @time_expectation).round(2)
-  end
 
   def convert_to_days
     if @metric == "days"

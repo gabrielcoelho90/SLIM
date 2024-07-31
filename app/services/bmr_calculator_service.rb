@@ -7,12 +7,6 @@ class BmrCalculatorService < ApplicationService
   end
 
   def call
-    bmr
-  end
-
-  private
-
-  def bmr
     if @gender == 'male'
       (88.362 + (13.397 * @weight) + (4.799 * @height) - (5.677 * @age)).round(2)
     else
