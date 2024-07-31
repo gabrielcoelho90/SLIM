@@ -4,14 +4,12 @@ class PagesController < ApplicationController
     if @user.name.nil?
       redirect_to edit_user_path(@user)
     else
-      results = CalculatorService.call(@user)
-      @bmi = results[:bmi]
-      @bmr = results[:bmr]
-      @cal_per_day = results[:daily_loss]
+      @bmi = BmiCalculatorService.call(@user)
+      @bmr = BmrCalculatorService.call(@user)
+      @daily_loss = DailyLossCalculatorService.call(@user)
     end
   end
 
   def profile
-
   end
 end
