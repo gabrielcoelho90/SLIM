@@ -22,6 +22,6 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:name, :age, :weight, :height, :kilos_to_lose, :gender)
+    params.require(:user).permit(:name, :age, :weight, :height, :kilos_to_lose, :gender, :metric, :timeline)
   end
 end
