@@ -1,5 +1,5 @@
 <div>
-  <%= form_with model: @user, url: user_path, method: "patch" do |form| %>
+  <%= form_with model: @user, url: user_path, method: :patch do |form| %>
   <div class="m-3">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -30,12 +30,12 @@
   <div class="mt-3">
     <%= form.label :timeline, 'I want to achieve my goal in: ' %>
     <%= form.text_field :timeline %><br>
-    <%= form.radio_button :timeline, 'days' %>
-    <%= form.label :timeline, 'Days' %>
-    <%= form.radio_button :timeline, 'weeks' %>
-    <%= form.label :timeline, 'Weeks' %>
-    <%= form.radio_button :timeline, 'months' %>
-    <%= form.label :timeline, 'Months' %>
+    <%# <%= form.radio_button :timeline, 'days' %>
+    <%# <%= form.label :timeline, 'Days' %>
+    <%#= form.radio_button :timeline, 'weeks' %>
+    <%#= form.label :timeline, 'Weeks' %>
+    <%#= form.radio_button :timeline, 'months' %>
+    <%#= form.label :timeline, 'Months' %>
   </div>
 
   <div class="my-3 mx-2">
