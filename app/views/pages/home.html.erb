@@ -3,4 +3,8 @@
   <h2> Your BMI is <%= @bmi %> </h2>
   <h2>Your BMR is: <%= @bmr %></h2>
   <h2> To accomplish your goal, you need to lose: <%= @daily_loss %> calories per day</h2>
+  <h2>You already consumed xxx calories today.</h2>
+  <h2>You burned xxx calories running.</h2>
 </div>
+
+<%= link_to 'Food Journal', user_meals_path(@user) %>
