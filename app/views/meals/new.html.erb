@@ -1,0 +1,70 @@
+
+<div>
+  <h1>Create your meal</h1>
+</div>
+
+<div class="d-flex colmun-direction justify-content-center align-items-center vh-100" >
+  <%= form_with model: [@user, @meal] do |f| %>
+    <div class="row">
+      <div class="m-3">
+        <%= f.label :date %>
+        <%= f.date_select :date %>
+      </div>
+
+      <div class="m-3">
+        <%= f.label :type %>
+        <%= f.select(:meal_type, ['Breakfast', 'Lunch', 'Dinner', 'Snack']) %>
+      </div>
+    </div>
+
+    <div data-controller = "insert-item">
+      <div>
+        <h3>Items</h3>
+      </div>
+
+      <div  data-insert-item-target = "container">
+        <div class="row" data-controller = "food-options" data-insert-item-target = "fullContent">
+          <%= f.fields_for :meal_items do |item_form| %>
+            <div class="d-flex m-3">
+              <div class="m-3">
+              <%= item_form.fields_for :item do |new_item_form| %>
+                <%= new_item_form.label :name %>
+                <%= new_item_form.text_field :name, data: {food_options_target: "name"} %>
+                <%= new_item_form.hidden_field :calories, data: {food_options_target: "calories"} %>
+                <%= new_item_form.hidden_field :carbs, data: {food_options_target: "carbs"} %>
+                <%= new_item_form.hidden_field :protein, data: {food_options_target: "protein"} %>
+                <%= new_item_form.hidden_field :fat, data: {food_options_target: "fat"} %>
+              <% end %>
+              </div>
+
+              <div class="m-3" data-food-options-target = "qty">
+                <%= item_form.label :qty %>
+                <%= item_form.number_field :qty %>
+              </div>
+
+              <div class="m-3" data-food-options-target = "measureUnit">
+                <%= item_form.label :measure_unit %>
+                <%= item_form.select :measure_unit, MealItem.measure_units.keys.map { |unit| [unit.humanize, unit] } %>
+              </div>
+            </div>
+            <div data-food-options-target = "options" data-action="click->food-options#select">
+            </div>
+            <div class="d-flex align-items-center m-3">
+              <button type="button" class="btn btn-secondary" data-action="click->food-options#search" data-food-options-target = "searchButton">
+                Search food
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="m-3">
+        <button type="button" data-action="click->insert-item#insert">Add new food</button>
+      </div>
+    </div>
+
+
+    <div class="m-3">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

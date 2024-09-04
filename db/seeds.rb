@@ -15,4 +15,23 @@ gabriel = User.new(
     )
 gabriel.save
 
+egg = Item.create(
+  name: "egg",
+  calories:78,
+  fat: 5,
+  carbs: 0.6,
+  protein: 5
+)
+
+meal = Meal.create(
+  meal_type: "breakfast"
+)
+
+MealItem.create(
+  meal_id: meal,
+  item_id: egg
+  )
+
+meal.user = gabriel
+
 puts 'Done!'

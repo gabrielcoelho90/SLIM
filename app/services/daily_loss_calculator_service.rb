@@ -6,16 +6,18 @@ class DailyLossCalculatorService < ApplicationService
   end
 
   def call
-    time_expectation = convert_to_days(@metric, @timeline) unless @metric.nil?
+    if @metric.nil?
+      time_expectation = @timeline
+    else
+      time_expectation = convert_to_days(@metric, @timeline)
+    end
     ((@kilos_to_lose * 7700) / time_expectation).round(2)
   end
 
   private
 
   def convert_to_days(metric, timeline)
-    if metric == "days"
-      timeline
-    elsif metric == "weeks"
+    if metric == "weeks"
       timeline * 7
     else
       timeline * 30
