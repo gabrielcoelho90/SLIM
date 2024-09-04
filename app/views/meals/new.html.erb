@@ -30,10 +30,10 @@
               <%= item_form.fields_for :item do |new_item_form| %>
                 <%= new_item_form.label :name %>
                 <%= new_item_form.text_field :name, data: {food_options_target: "name"} %>
-                <%= new_item_form.number_field :calories, data: {food_options_target: "calories"}, class:"d-none" %>
-                <%= new_item_form.number_field :carbs, data: {food_options_target: "carbs"}, class:"d-none" %>
-                <%= new_item_form.number_field :protein, data: {food_options_target: "protein"}, class:"d-none" %>
-                <%= new_item_form.number_field :fat, data: {food_options_target: "fat"}, class:"d-none" %>
+                <%= new_item_form.hidden_field :calories, data: {food_options_target: "calories"} %>
+                <%= new_item_form.hidden_field :carbs, data: {food_options_target: "carbs"} %>
+                <%= new_item_form.hidden_field :protein, data: {food_options_target: "protein"} %>
+                <%= new_item_form.hidden_field :fat, data: {food_options_target: "fat"} %>
               <% end %>
               </div>
 

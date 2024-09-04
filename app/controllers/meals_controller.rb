@@ -42,7 +42,7 @@ class MealsController < ApplicationController
         :qty,
         :measure_unit,
         :_destroy,
-        item_attributes: [:name]
+        item_attributes: [:name, :calories, :protein, :carbs, :fat]
       ]
     )
     end

@@ -30,6 +30,7 @@ class GetFoodInfoService < ApplicationService
       http.request(req)
     end
     response = JSON.parse(res.body)
+    pp response
     pp filter_info(response)
   end
 
@@ -57,5 +58,3 @@ class GetFoodInfoService < ApplicationService
     end
   end
 end
-
-pp GetFoodInfoService.call("carrots")
