@@ -8,7 +8,7 @@ export default class extends Controller {
     this.count = 1;
   }
 
-  //It sends a AJAX to my service "get_food_info.rb" with the user's food input and receive
+  //It sends a request, through AJAX, to my service "get_food_info.rb" with the user's food input and receive
   //"data" as array of food variation, each variant is a hash of info, like calories, fat, carbs....
   search(event){
     this.foods = []

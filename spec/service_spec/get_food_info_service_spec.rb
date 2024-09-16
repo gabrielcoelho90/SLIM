@@ -33,7 +33,6 @@ describe GetFoodInfoService, type: :service do
       )
       .to_return(status: 200, body: response_body, headers: {})
 
-    # Stub GetAccessTokenService.fetch
     allow(GetAccessTokenService).to receive(:fetch).and_return("access_token" => access_token)
   end
 
@@ -62,5 +61,11 @@ describe GetFoodInfoService, type: :service do
         protein: "Protein: 12.58g"
       }
     ])
+  end
+
+  it "checks if response has an error" do
+    service = GetFoodInfoService.new("eggs")
+    response = service.call
+    expect(response).to be true
   end
 end

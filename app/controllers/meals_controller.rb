@@ -45,5 +45,5 @@ class MealsController < ApplicationController
         item_attributes: [:name, :calories, :protein, :carbs, :fat]
       ]
     )
-    end
+  end
 end

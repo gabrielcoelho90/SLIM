@@ -31,8 +31,7 @@ class GetFoodInfoService < ApplicationService
       http.request(req)
     end
     response = JSON.parse(res.body)
-    pp response
-    filter_info(response)
+    response.has_key?("error") ? true : filter_info(response)
   end
 
   private
