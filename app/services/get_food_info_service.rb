@@ -5,6 +5,7 @@ require_relative "get_access_token_service"
 require "pp"
 require_relative "./application_service.rb"
 
+#This service is responsable for get food info from my API.
 
 class GetFoodInfoService < ApplicationService
   def initialize(name)
@@ -31,11 +32,11 @@ class GetFoodInfoService < ApplicationService
     end
     response = JSON.parse(res.body)
     pp response
-    pp filter_info(response)
+    filter_info(response)
   end
 
   private
-
+  # The following method was created for the purpose of format the response from the API.
   def filter_info(response)
     array_of_options = response["foods"]["food"]
     array_of_options.map do |array_of_option|
@@ -58,3 +59,5 @@ class GetFoodInfoService < ApplicationService
     end
   end
 end
+
+GetFoodInfoService.call("eggs")

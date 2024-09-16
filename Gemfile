@@ -76,4 +76,5 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "selenium-webdriver"
+  gem 'webmock', '~> 3.23', '>= 3.23.1'
 end

@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
+//This con
 export default class extends Controller {
   static targets = ["name", "calories","protein", "carbs", "fat", "options", "searchButton", "qty", "measureUnit"]
 
@@ -7,7 +8,8 @@ export default class extends Controller {
     this.count = 1;
   }
 
-  //AJAX
+  //It sends a AJAX to my service "get_food_info.rb" with the user's food input and receive
+  //"data" as array of food variation, each variant is a hash of info, like calories, fat, carbs....
   search(event){
     this.foods = []
     const userInput = this.nameTarget.value
@@ -22,11 +24,9 @@ export default class extends Controller {
       .then(data => {
         this.foods = data;
         this.displayOptions(data);
-        console.log(this.foods);
       });
   }
 
-  //Display food options
   displayOptions(data) {
     const displayArea = this.optionsTarget;
     displayArea.innerHTML = "";
@@ -35,7 +35,8 @@ export default class extends Controller {
       `${options}`
     );
   }
-  // Create customized options of user's item
+  // Gets the food variations data and work on it to create a board, listing the name, measument unit
+  // and calories of 10 variations of that food.
   createOptions(foods){
     let listContent = " ";
     let identity = -1;
@@ -50,30 +51,29 @@ export default class extends Controller {
   return finalContent
   }
 
-  // Track wich food option user has chosen
+  // Listens wich food option user has chosen and fill in, through the return
+  //of "passHiddenValues" function, the food info in hidden fields. Once the user save
+  //the meal, those hidden info will be passed through my form to my controller.
   select(event) {
     const foodChosen = event.target
     const newValue = foodChosen.innerHTML;
     this.nameTarget.value = newValue;
-    console.log(foodChosen);
     const foodChosenIdentity = Number(foodChosen.dataset.identity);
-    console.log(foodChosenIdentity);
     const hiddenInputs = this.passHiddenValues(foodChosenIdentity);
     this.caloriesTarget.value = hiddenInputs.calories;
     this.proteinTarget.value = hiddenInputs.protein
     this.carbsTarget.value = hiddenInputs.carbs
     this.fatTarget.value = hiddenInputs.fat
-    console.log(hiddenInputs.calories)
     this.optionsTarget.innerHTML = "";
   }
 
-  // From user's choice get, match it with my response from AJAX in order to
-  //get the correct calories, fat , etc from that item and return an object.
+  // It is in charge to identify, through "data-identity" attribute, which option was selected
+  //by the user. Once detected, extract the info from the "data" and return it as a hash
+  // that will be passed in hidden fields inside "select" function.
   passHiddenValues(foodIdentity){
     let result = null;
     this.foods.map ((food) => {
       if (this.foods.indexOf(food) === foodIdentity) {
-        console.log("true")
         const digits = /([0-9]*[.])?[0-9]+/;
         result = {
           unit: food.unit,
