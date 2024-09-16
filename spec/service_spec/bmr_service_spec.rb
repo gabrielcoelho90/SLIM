@@ -17,7 +17,7 @@ describe BmrCalculatorService do
     end
 
     context "for a female" do
-      it 'returns the femlae BMR calculator' do
+      it 'returns the female BMR calculator' do
         @age = 33
         @gender = 'female'
         expect(@calc.call).to_not eq(1142.66)

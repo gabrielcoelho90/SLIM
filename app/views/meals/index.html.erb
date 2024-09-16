@@ -1,0 +1,45 @@
+<h1>On this page I will have all my meals of the day</h1>
+<h3>Each meal board will have the items name, qty, calories, etc</h3>
+<h3>At the bottom it will have a compilation board with each meal with their respectives
+totals</h3>
+
+<h4>example</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">BREAKFAST</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">ITEMS</th>
+      <td>QTY</td>
+      <td> - </td>
+      <td>CALORIES</td>
+      <td>PROTEINS</td>
+      <td>CARBS</td>
+      <td>FAT</td>
+    </tr>
+    <tr>
+      <th scope="row">Egg</th>
+      <td>2</td>
+      <td>UN</td>
+      <td>38g</td>
+      <td>12g</td>
+      <td>39g</td>
+      <td>9g</td>
+    </tr>
+    <tr>
+      <th scope="row">Orange Juice</th>
+      <td>200</td>
+      <td>ml</td>
+      <td>32g</td>
+      <td>1g</td>
+      <td>9g</td>
+      <td>11g</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%= link_to 'Add new meal', new_user_meal_path(@user) %>
