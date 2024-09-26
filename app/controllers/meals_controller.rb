@@ -1,20 +1,41 @@
 class MealsController < ApplicationController
   before_action :set_user
 
+  def index
+    @daily_user_meals = Meal.meals_of_the_day(@user)
+  end
+
   def new
     @meal = Meal.new
     meal_item = @meal.meal_items.build
     meal_item.build_item
   end
 
+  def edit
+    @meal = Meal.find(params[:id])
+    render :new
+  end
+
   def create
-    raise
     @meal = @user.meals.build(meal_params)
     if @meal.save
-      redirect_to user_meal_path(@user, @meal), notice: 'Meal was successfully created.'
+      redirect_to user_meals_path(@user, @meal), notice: 'Meal was successfully created.'
     else
       render :new
     end
+  end
+
+  def update
+    @meal = Meal.find(params[:id])
+    if @meal.update(meal_params)
+      redirect_to user_meals_path, notice: 'Meal was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+
   end
 
   def get_food_options
@@ -39,10 +60,11 @@ class MealsController < ApplicationController
       :meal_type,
       :_destroy,
       meal_items_attributes: [
+        :id,
         :qty,
         :measure_unit,
         :_destroy,
-        item_attributes: [:name, :calories, :protein, :carbs, :fat]
+        item_attributes: [:id, :name, :calories, :protein, :carbs, :fat]
       ]
     )
   end

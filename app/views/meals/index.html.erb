@@ -1,13 +1,9 @@
-<h1>On this page I will have all my meals of the day</h1>
-<h3>Each meal board will have the items name, qty, calories, etc</h3>
-<h3>At the bottom it will have a compilation board with each meal with their respectives
-totals</h3>
+<% @daily_user_meals.each do |daily_meal| %>
 
-<h4>example</h4>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">BREAKFAST</th>
+      <th scope="col"><%=  daily_meal.meal_type %></th>
     </tr>
   </thead>
   <tbody>
@@ -20,26 +16,21 @@ totals</h3>
       <td>CARBS</td>
       <td>FAT</td>
     </tr>
-    <tr>
-      <th scope="row">Egg</th>
-      <td>2</td>
-      <td>UN</td>
-      <td>38g</td>
-      <td>12g</td>
-      <td>39g</td>
-      <td>9g</td>
-    </tr>
-    <tr>
-      <th scope="row">Orange Juice</th>
-      <td>200</td>
-      <td>ml</td>
-      <td>32g</td>
-      <td>1g</td>
-      <td>9g</td>
-      <td>11g</td>
-    </tr>
+    <% daily_meal.meal_items.each do |meal_item| %>
+      <tr>
+        <th scope="row"><%= meal_item.name%></th>
+        <td><%= meal_item.qty %></td>
+        <td><%= meal_item.measure_unit %></td>
+        <td><%= meal_item.calories %></td>
+        <td><%= meal_item.protein %></td>
+        <td><%= meal_item.carbs %></td>
+        <td><%= meal_item.fat %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
+<%= link_to 'Edit your meal', edit_user_meal_path(@user, daily_meal) %>
 
+<% end %>
 
 <%= link_to 'Add new meal', new_user_meal_path(@user) %>

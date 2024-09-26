@@ -5,4 +5,5 @@ class MealItem < ApplicationRecord
   belongs_to :item
 
   accepts_nested_attributes_for :item, allow_destroy: true
+  delegate :name, :calories, :fat, :protein, :carbs, to: :item
 end

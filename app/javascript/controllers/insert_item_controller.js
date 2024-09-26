@@ -39,10 +39,10 @@ export default class extends Controller {
     }
 
     let qtyField = document.getElementById("meal_meal_items_attributes_0_qty");
-    qtyField.name = `meal[meal_items_attributes][${this.count}][item_attributes][qty]`;
+    qtyField.name = `meal[meal_items_attributes][${this.count}][qty]`;
     qtyField.id = `meal_meal_items_attributes_${this.count}_item_attributes_qty`;
     let measureField = document.getElementById("meal_meal_items_attributes_0_measure_unit");
-    measureField.name = `meal[meal_items_attributes][${this.count}][item_attributes][measure_unit]`;
+    measureField.name = `meal[meal_items_attributes][${this.count}][measure_unit]`;
     measureField.id = `meal_meal_items_attributes_${this.count}_item_attributes_measure_unit`;
   }
 }

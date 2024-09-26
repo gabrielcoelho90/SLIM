@@ -31,7 +31,11 @@ class GetFoodInfoService < ApplicationService
       http.request(req)
     end
     response = JSON.parse(res.body)
-    response.has_key?("error") ? true : filter_info(response)
+    if response.has_key?("error")
+      "The response has an error!"
+    else
+      filter_info(response)
+    end
   end
 
   private
@@ -59,4 +63,4 @@ class GetFoodInfoService < ApplicationService
   end
 end
 
-GetFoodInfoService.call("eggs")
+# GetFoodInfoService.call("bacon")

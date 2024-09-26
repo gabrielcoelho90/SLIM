@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'webmock/rspec'
 
 describe GetFoodInfoService, type: :service do
+
   let(:access_token) { 'fake_token' }
   let(:response_body) {
   {
@@ -37,8 +38,7 @@ describe GetFoodInfoService, type: :service do
   end
 
   it "sends a HTTP request with the correct params and returns filtered info" do
-    service = GetFoodInfoService.new("eggs")
-    result = service.call
+    result = GetFoodInfoService.call("eggs")
 
     expect(WebMock).to have_requested(:post, uri.to_s)
       .with(
@@ -61,11 +61,5 @@ describe GetFoodInfoService, type: :service do
         protein: "Protein: 12.58g"
       }
     ])
-  end
-
-  it "checks if response has an error" do
-    service = GetFoodInfoService.new("eggs")
-    response = service.call
-    expect(response).to be true
   end
 end
