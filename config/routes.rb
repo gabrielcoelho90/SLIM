@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show edit update] do
     resources :meals
   end
+
+  get "/search_food", to: "meals#get_food_options"
+
 end

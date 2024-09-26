@@ -1,0 +1,36 @@
+<% @daily_user_meals.each do |daily_meal| %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%=  daily_meal.meal_type %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">ITEMS</th>
+      <td>QTY</td>
+      <td> - </td>
+      <td>CALORIES</td>
+      <td>PROTEINS</td>
+      <td>CARBS</td>
+      <td>FAT</td>
+    </tr>
+    <% daily_meal.meal_items.each do |meal_item| %>
+      <tr>
+        <th scope="row"><%= meal_item.name%></th>
+        <td><%= meal_item.qty %></td>
+        <td><%= meal_item.measure_unit %></td>
+        <td><%= meal_item.calories %></td>
+        <td><%= meal_item.protein %></td>
+        <td><%= meal_item.carbs %></td>
+        <td><%= meal_item.fat %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Edit your meal', edit_user_meal_path(@user, daily_meal) %>
+
+<% end %>
+
+<%= link_to 'Add new meal', new_user_meal_path(@user) %>
